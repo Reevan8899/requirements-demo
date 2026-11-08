@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "requirements-demo"
+version = "1.0.0"
+description = "Учебный консольный менеджер заметок"
+requires-python = ">=3.10"
+dependencies = ["filelock>=3.20,<4"]
+
+[project.scripts]
+note = "src.cli:main"
+
+[tool.setuptools]
+packages = ["src"]
+
+[tool.setuptools.package-data]
+src = ["messages_ru.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["req(*ids): ID требований, которые проверяет тест"]
+
+[tool.coverage.report]
+fail_under = 80
+show_missing = true
