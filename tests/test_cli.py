@@ -17,7 +17,7 @@ def test_fr001_add_persists_note(manager, capsys):
     ("я" * 101, "Текст", "Заголовок слишком длинный"),
     ("Заголовок", "", "Тело заметки обязательно"),
     ("Заголовок", "я" * 10_001, "Тело заметки слишком длинное"),
-])
+], ids=["empty-title", "long-title", "empty-body", "long-body"])
 def test_fr001_rejects_invalid_fields(manager, capsys, title, body, error):
     assert main(["add", "--title", title, "--body", body]) == 2
     assert capsys.readouterr().err.startswith(f"Ошибка: {error}.")
